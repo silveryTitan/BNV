@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RangeSeekBar">
+        <attr name="progressBarWidth" format="float" />
+        <attr name="progressBarHeight" format="float" />
+        <attr name="barButtonHeight" format="float" />
+        <attr name="barButtonWidth" format="float" />
+        <attr name="bottomLayerColor" format="reference|color" />
+        <attr name="progressBarRadius" format="float" />
+    </declare-styleable>
+    <!-- 类型，mask为自动加上按钮按下遮罩效果，selector为自定义 -->
+    <attr name="rs_type">
+        <enum name="mask" value="0" />
+        <enum name="selector" value="1" />
+        <enum name="none" value="-1" />
+    </attr>
+    <!-- 形状相关 begin -->
+    <attr name="rs_shape">
+        <!-- 矩形 -->
+        <enum name="rectangle" value="0" />
+        <!-- 椭圆形 -->
+        <enum name="oval" value="1" />
+        <!-- 线性形状 -->
+        <enum name="line" value="2" />
+        <!-- 环形 -->
+        <enum name="ring" value="3" />
+    </attr>
+    <!-- 尺寸，内环的半径 shape="ring"可用 -->
+    <attr name="rs_innerRadius" format="dimension|reference" />
+    <!-- 以环的宽度比率来表示内环的半径 shape="ring"可用 -->
+    <attr name="rs_innerRadiusRatio" format="float" />
+    <!-- 尺寸，环的厚度 shape="ring"可用 -->
+    <attr name="rs_thickness" format="dimension|reference" />
+    <!-- 以环的宽度比率来表示环的厚度 shape="ring"可用 -->
+    <attr name="rs_thicknessRatio" format="float" />
+    <!-- 形状相关 end -->
+
+    <!-- 背景色相关 begin -->
+    <attr name="rs_normalBackgroundColor" format="color|reference" />
+    <attr name="rs_pressedBackgroundColor" format="color|reference" />
+    <attr name="rs_disabledBackgroundColor" format="color|reference" />
+    <attr name="rs_selectedBackgroundColor" format="color|reference" />
+    <!-- 背景色相关 end -->
+
+    <!-- 描边相关 begin -->
+    <!-- 颜色 -->
+    <attr name="rs_normalStrokeColor" format="color|reference" />
+    <attr name="rs_pressedStrokeColor" format="color|reference" />
+    <attr name="rs_disabledStrokeColor" format="color|reference" />
+    <attr name="rs_selectedStrokeColor" format="color|reference" />
+    <!-- 宽度 -->
+    <attr name="rs_strokeWidth" format="dimension|reference" />
+    <!-- 虚线宽度 -->
+    <attr name="rs_dashWidth" format="dimension|reference" />
+    <!-- 虚线间隔 -->
+    <attr name="rs_dashGap" format="dimension|reference" />
+    <!-- 描边相关 end -->
+
+    <!-- 圆角相关 -->
+    <attr name="rs_cornersRadius" format="dimension|reference" />
+    <attr name="rs_cornersTopLeftRadius" format="dimension|reference" />
+    <attr name="rs_cornersTopRightRadius" format="dimension|reference" />
+    <attr name="rs_cornersBottomLeftRadius" format="dimension|reference" />
+    <attr name="rs_cornersBottomRightRadius" format="dimension|reference" />
+
+    <!-- 渐变相关 begin -->
+    <attr name="rs_normalGradientColors" format="reference" />
+    <attr name="rs_pressedGradientColors" format="reference" />
+    <attr name="rs_disabledGradientColors" format="reference" />
+    <attr name="rs_selectedGradientColors" format="reference" />
+    <!-- 渐变方向 -->
+    <attr name="rs_gradientOrientation">
+        <enum name="TOP_BOTTOM" value="0" />
+        <enum name="TR_BL" value="1" />
+        <enum name="RIGHT_LEFT" value="2" />
+        <enum name="BR_TL" value="3" />
+        <enum name="BOTTOM_TOP" value="4" />
+        <enum name="BL_TR" value="5" />
+        <enum name="LEFT_RIGHT" value="6" />
+        <enum name="TL_BR" value="7" />
+    </attr>
+    <!-- 渐变类型 -->
+    <attr name="rs_gradientType">
+        <!-- 线性渐变，默认值 -->
+        <enum name="linear" value="0" />
+        <!-- 圆形渐变，起始颜色从gradientCenterX、gradientCenterY点开始 -->
+        <enum name="radial" value="1" />
+        <!-- A sweeping line gradient -->
+        <enum name="sweep" value="2" />
+    </attr>
+    <!-- 渐变中心放射点x坐标，注意，这里的坐标是整个背景的百分比的点，并不是确切点，0.2就是20%的点 -->
+    <attr name="rs_gradientCenterX" format="float" />
+    <!-- 渐变中心放射点y坐标，注意，这里的坐标是整个背景的百分比的点，并不是确切点，0.2就是20%的点 -->
+    <attr name="rs_gradientCenterY" format="float" />
+    <!-- 渐变半径，需要配合gradientType=radial使用，如果设置gradientType=radial而没有设置gradientRadius，将会报错 -->
+    <attr name="rs_gradientRadius" format="dimension|reference" />
+    <!-- 渐变相关 end -->
+
+    <!-- 其它 begin -->
+    <!-- 当rs_type=mask时，按钮按下状态的遮罩颜色 -->
+    <attr name="rs_maskBackgroundColor" format="color|reference" />
+    <!-- 用于解决手指移出控件区域判断为cancel的偏移量 -->
+    <attr name="rs_cancelOffset" format="dimension|reference" />
+    <!-- 事件拦截类型 -->
+    <attr name="rs_interceptType">
+        <!-- return super -->
+        <enum name="intercept_super" value="0" />
+        <!-- return true -->
+        <enum name="intercept_true" value="1" />
+        <!-- return false -->
+        <enum name="intercept_false" value="2" />
+    </attr>
+    <!-- 其它 end -->
+
+    <declare-styleable name="RsConstraintLayout">
+        <attr name="rs_type" />
+        <attr name="rs_shape" />
+        <attr name="rs_innerRadius" />
+        <attr name="rs_innerRadiusRatio" />
+        <attr name="rs_thickness" />
+        <attr name="rs_thicknessRatio" />
+        <attr name="rs_normalBackgroundColor" />
+        <attr name="rs_pressedBackgroundColor" />
+        <attr name="rs_disabledBackgroundColor" />
+        <attr name="rs_selectedBackgroundColor" />
+        <attr name="rs_normalStrokeColor" />
+        <attr name="rs_pressedStrokeColor" />
+        <attr name="rs_disabledStrokeColor" />
+        <attr name="rs_selectedStrokeColor" />
+        <attr name="rs_strokeWidth" />
+        <attr name="rs_dashWidth" />
+        <attr name="rs_dashGap" />
+        <attr name="rs_cornersRadius" />
+        <attr name="rs_cornersTopLeftRadius" />
+        <attr name="rs_cornersTopRightRadius" />
+        <attr name="rs_cornersBottomLeftRadius" />
+        <attr name="rs_cornersBottomRightRadius" />
+        <attr name="rs_normalGradientColors" />
+        <attr name="rs_pressedGradientColors" />
+        <attr name="rs_disabledGradientColors" />
+        <attr name="rs_selectedGradientColors" />
+        <attr name="rs_gradientOrientation" />
+        <attr name="rs_gradientType" />
+        <attr name="rs_gradientCenterX" />
+        <attr name="rs_gradientCenterY" />
+        <attr name="rs_gradientRadius" />
+        <attr name="rs_maskBackgroundColor" />
+        <attr name="rs_interceptType" />
+    </declare-styleable>
+
+    <declare-styleable name="RsFrameLayout">
+        <attr name="rs_type" />
+        <attr name="rs_shape" />
+        <attr name="rs_innerRadius" />
+        <attr name="rs_innerRadiusRatio" />
+        <attr name="rs_thickness" />
+        <attr name="rs_thicknessRatio" />
+        <attr name="rs_normalBackgroundColor" />
+        <attr name="rs_pressedBackgroundColor" />
+        <attr name="rs_disabledBackgroundColor" />
+        <attr name="rs_selectedBackgroundColor" />
+        <attr name="rs_normalStrokeColor" />
+        <attr name="rs_pressedStrokeColor" />
+        <attr name="rs_disabledStrokeColor" />
+        <attr name="rs_selectedStrokeColor" />
+        <attr name="rs_strokeWidth" />
+        <attr name="rs_dashWidth" />
+        <attr name="rs_dashGap" />
+        <attr name="rs_cornersRadius" />
+        <attr name="rs_cornersTopLeftRadius" />
+        <attr name="rs_cornersTopRightRadius" />
+        <attr name="rs_cornersBottomLeftRadius" />
+        <attr name="rs_cornersBottomRightRadius" />
+        <attr name="rs_normalGradientColors" />
+        <attr name="rs_pressedGradientColors" />
+        <attr name="rs_disabledGradientColors" />
+        <attr name="rs_selectedGradientColors" />
+        <attr name="rs_gradientOrientation" />
+        <attr name="rs_gradientType" />
+        <attr name="rs_gradientCenterX" />
+        <attr name="rs_gradientCenterY" />
+        <attr name="rs_gradientRadius" />
+        <attr name="rs_maskBackgroundColor" />
+        <attr name="rs_interceptType" />
+    </declare-styleable>
+
+    <declare-styleable name="RsLinearLayout">
+        <attr name="rs_type" />
+        <attr name="rs_shape" />
+        <attr name="rs_innerRadius" />
+        <attr name="rs_innerRadiusRatio" />
+        <attr name="rs_thickness" />
+        <attr name="rs_thicknessRatio" />
+        <attr name="rs_normalBackgroundColor" />
+        <attr name="rs_pressedBackgroundColor" />
+        <attr name="rs_disabledBackgroundColor" />
+        <attr name="rs_selectedBackgroundColor" />
+        <attr name="rs_normalStrokeColor" />
+        <attr name="rs_pressedStrokeColor" />
+        <attr name="rs_disabledStrokeColor" />
+        <attr name="rs_selectedStrokeColor" />
+        <attr name="rs_strokeWidth" />
+        <attr name="rs_dashWidth" />
+        <attr name="rs_dashGap" />
+        <attr name="rs_cornersRadius" />
+        <attr name="rs_cornersTopLeftRadius" />
+        <attr name="rs_cornersTopRightRadius" />
+        <attr name="rs_cornersBottomLeftRadius" />
+        <attr name="rs_cornersBottomRightRadius" />
+        <attr name="rs_normalGradientColors" />
+        <attr name="rs_pressedGradientColors" />
+        <attr name="rs_disabledGradientColors" />
+        <attr name="rs_selectedGradientColors" />
+        <attr name="rs_gradientOrientation" />
+        <attr name="rs_gradientType" />
+        <attr name="rs_gradientCenterX" />
+        <attr name="rs_gradientCenterY" />
+        <attr name="rs_gradientRadius" />
+        <attr name="rs_maskBackgroundColor" />
+        <attr name="rs_interceptType" />
+    </declare-styleable>
+
+    <declare-styleable name="RsRelativeLayout">
+        <attr name="rs_type" />
+        <attr name="rs_shape" />
+        <attr name="rs_innerRadius" />
+        <attr name="rs_innerRadiusRatio" />
+        <attr name="rs_thickness" />
+        <attr name="rs_thicknessRatio" />
+        <attr name="rs_normalBackgroundColor" />
+        <attr name="rs_pressedBackgroundColor" />
+        <attr name="rs_disabledBackgroundColor" />
+        <attr name="rs_selectedBackgroundColor" />
+        <attr name="rs_normalStrokeColor" />
+        <attr name="rs_pressedStrokeColor" />
+        <attr name="rs_disabledStrokeColor" />
+        <attr name="rs_selectedStrokeColor" />
+        <attr name="rs_strokeWidth" />
+        <attr name="rs_dashWidth" />
+        <attr name="rs_dashGap" />
+        <attr name="rs_cornersRadius" />
+        <attr name="rs_cornersTopLeftRadius" />
+        <attr name="rs_cornersTopRightRadius" />
+        <attr name="rs_cornersBottomLeftRadius" />
+        <attr name="rs_cornersBottomRightRadius" />
+        <attr name="rs_normalGradientColors" />
+        <attr name="rs_pressedGradientColors" />
+        <attr name="rs_disabledGradientColors" />
+        <attr name="rs_selectedGradientColors" />
+        <attr name="rs_gradientOrientation" />
+        <attr name="rs_gradientType" />
+        <attr name="rs_gradientCenterX" />
+        <attr name="rs_gradientCenterY" />
+        <attr name="rs_gradientRadius" />
+        <attr name="rs_maskBackgroundColor" />
+        <attr name="rs_interceptType" />
+    </declare-styleable>
+
+    <declare-styleable name="RsTextView">
+        <attr name="rs_type" />
+        <attr name="rs_shape" />
+        <attr name="rs_innerRadius" />
+        <attr name="rs_innerRadiusRatio" />
+        <attr name="rs_thickness" />
+        <attr name="rs_thicknessRatio" />
+        <attr name="rs_normalBackgroundColor" />
+        <attr name="rs_pressedBackgroundColor" />
+        <attr name="rs_disabledBackgroundColor" />
+        <attr name="rs_selectedBackgroundColor" />
+        <attr name="rs_normalStrokeColor" />
+        <attr name="rs_pressedStrokeColor" />
+        <attr name="rs_disabledStrokeColor" />
+        <attr name="rs_selectedStrokeColor" />
+        <attr name="rs_strokeWidth" />
+        <attr name="rs_dashWidth" />
+        <attr name="rs_dashGap" />
+        <attr name="rs_cornersRadius" />
+        <attr name="rs_cornersTopLeftRadius" />
+        <attr name="rs_cornersTopRightRadius" />
+        <attr name="rs_cornersBottomLeftRadius" />
+        <attr name="rs_cornersBottomRightRadius" />
+        <attr name="rs_normalGradientColors" />
+        <attr name="rs_pressedGradientColors" />
+        <attr name="rs_disabledGradientColors" />
+        <attr name="rs_selectedGradientColors" />
+        <attr name="rs_gradientOrientation" />
+        <attr name="rs_gradientType" />
+        <attr name="rs_gradientCenterX" />
+        <attr name="rs_gradientCenterY" />
+        <attr name="rs_gradientRadius" />
+        <attr name="rs_maskBackgroundColor" />
+        <attr name="rs_cancelOffset" />
+        <attr name="rs_normalTextColor" format="color|reference" />
+        <attr name="rs_pressedTextColor" format="color|reference" />
+        <attr name="rs_disabledTextColor" format="color|reference" />
+        <attr name="rs_selectedTextColor" format="color|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="RsImageView">
+        <!-- 类型，mask为自动加上按钮按下遮罩效果，selector为自定义 -->
+        <attr name="rs_ib_type" format="enum">
+            <enum name="mask" value="0" />
+            <enum name="alpha" value="1" />
+            <enum name="selector" value="2" />
+            <enum name="checkBox" value="3" />
+            <enum name="none" value="-1" />
+        </attr>
+        <attr name="rs_ib_style" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="rounded" value="1" />
+            <enum name="oval" value="2" />
+        </attr>
+        <attr name="rs_maskBackgroundColor" />
+        <attr name="rs_cancelOffset" />
+        <attr name="rs_normalResId" format="color|reference" />
+        <attr name="rs_pressedResId" format="color|reference" />
+        <attr name="rs_disabledResId" format="color|reference" />
+        <attr name="rs_checkedResId" format="color|reference" />
+        <attr name="rs_uncheckedResId" format="color|reference" />
+        <attr name="rs_isChecked" format="boolean" />
+        <attr name="rs_pressedAlpha" format="float" />
+        <attr name="rs_disabledAlpha" format="float" />
+        <attr name="rs_cornersRadius" />
+        <attr name="rs_cornersTopLeftRadius" />
+        <attr name="rs_cornersTopRightRadius" />
+        <attr name="rs_cornersBottomLeftRadius" />
+        <attr name="rs_cornersBottomRightRadius" />
+    </declare-styleable>
+    <declare-styleable name="BNV">
+        <attr name="bnv_mode" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="bezier" value="1" />
+        </attr>
+        <attr name="bnv_max_count" format="integer" />
+        <attr name="bnv_is_enlarge" format="boolean" />
+        <attr name="bnv_textSize" format="float" />
+        <attr name="bnv_drawPadding" format="integer" />
+        <attr name="bnv_normal_textColor" format="reference|color" />
+        <attr name="bnv_press_textColor" format="reference|color" />
+    </declare-styleable>
+
+</resources>
