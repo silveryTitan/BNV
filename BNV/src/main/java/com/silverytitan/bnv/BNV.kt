@@ -243,6 +243,7 @@ class BNV : LinearLayout {
         fragmentList.add(fragment)
         viewList.add(constraintLayout)
         maxCount = viewList.size
+        requireNotNull(viewPager) { "You need to call the BNV.setViewPager() method first" }
         viewPager?.offscreenPageLimit = maxCount
         invalidate()
     }
