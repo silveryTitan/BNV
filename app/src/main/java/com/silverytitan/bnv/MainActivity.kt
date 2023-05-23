@@ -10,8 +10,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        bind.rvBm.setItemData("首页", R.mipmap.home_pressed, R.mipmap.home_normal, MainFragment())
+        bind.rvBm.setViewPager(bind.vpPage)
+                .setItemData("首页", R.mipmap.home_pressed, R.mipmap.home_normal, MainFragment())
                 .setItemData("动态", R.mipmap.home_pressed, R.mipmap.home_normal, MainFragment())
-                .setViewPager(bind.vpPage)
     }
 }
